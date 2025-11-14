@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四季音乐播放</title>
+    <style>
+        body { background-color: #000; color: #fff; text-align: center; padding: 20px; font-family: Arial, sans-serif; }
+        h1 { color: #4CAF50; }
+        button { background-color: #4CAF50; color: white; border: none; padding: 15px 32px; margin: 10px; font-size: 16px; cursor: pointer; border-radius: 8px; }
+        button:hover { background-color: #45a049; }
+        button.active { background-color: #ff9800; }
+        audio { width: 100%; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>四季音乐</h1>
+    <p>点击按钮选择季节音乐</p>
+    <button onclick="playMusic('spring')">春</button>
+    <button onclick="playMusic('summer')">夏</button>
+    <button onclick="playMusic('autumn')">秋</button>
+    <button onclick="playMusic('winter')">冬</button>
+    
+    <audio id="player" controls></audio>
+    
+    <script>
+        // 更新为您的 GitHub raw 链接（替换 username 和 repo 名）
+        const musicSources = {
+            spring: 'https://raw.githubusercontent.com/您的用户名/four-seasons-music/main/spring.mp3',
+            summer: 'https://raw.githubusercontent.com/您的用户名/four-seasons-music/main/summer.mp3',
+            autumn: 'https://raw.githubusercontent.com/您的用户名/four-seasons-music/main/autumn.mp3',
+            winter: 'https://raw.githubusercontent.com/您的用户名/four-seasons-music/main/winter.mp3'
+        };
+        
+        const player = document.getElementById('player');
+        const buttons = document.querySelectorAll('button');
+        
+        function playMusic(season) {
+            player.pause();
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            player.src = musicSources[season];
+            player.load();
+            player.play().catch(e => console.log('播放受限，请手动点击播放'));
+            
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
